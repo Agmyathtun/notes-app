@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
 
 function Login() {
   const [name, setName] = useState("");
   const { login } = useAuth();
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation();
   const { theme } = useTheme();
   const isDark = theme === "dark";
 
@@ -14,7 +15,7 @@ function Login() {
     e.preventDefault();
     if (!name.trim()) return alert("Please enter your name");
     login(name.trim());
-    Navigate("/");
+    navigate(location.state?.from?.pathname || "/");
   };
 
   return (

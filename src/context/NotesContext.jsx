@@ -10,11 +10,11 @@ export function NotesProvider({ children }) {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
 
-  const addNote = (title, context) => {
+  const addNote = (title, content) => {
     const newNote = {
       id: Date.now(),
       title,
-      context,
+      content,
       createdAt: new Date().toLocaleString(),
     };
     setNotes([newNote, ...notes]);
