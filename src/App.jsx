@@ -6,6 +6,7 @@ import AddNote from "./pages/AddNote";
 import NoteDetail from "./pages/NoteDetail";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
+import EditNote from "./pages/EditNote";
 
 function App() {
   return (
@@ -29,6 +30,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <NoteDetail />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="edit/:id"
+            element={
+              <ProtectedRoute>
+                <EditNote />
               </ProtectedRoute>
             }
           />

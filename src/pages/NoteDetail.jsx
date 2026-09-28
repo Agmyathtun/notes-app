@@ -69,6 +69,19 @@ function NoteDetail() {
       >
         Delete Note
       </button>
+      <Link
+        to={`/edit/${note.id}`}
+        style={{
+          padding: "10px 20px",
+          background: "#238636",
+          color: "white",
+          textDecoration: "none",
+          borderRadius: "8px",
+          marginRight: "10px",
+        }}
+      >
+        Edit Note
+      </Link>
     </div>
   );
 }

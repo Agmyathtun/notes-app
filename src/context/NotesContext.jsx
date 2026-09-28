@@ -2,10 +2,12 @@ import { useContext, createContext, useState, useEffect } from "react";
 const NotesContext = createContext();
 
 export function NotesProvider({ children }) {
+
   const [notes, setNotes] = useState(() => {
     const saved = localStorage.getItem("notes");
     return saved ? JSON.parse(saved) : [];
   });
+
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
@@ -19,11 +21,21 @@ export function NotesProvider({ children }) {
     };
     setNotes([newNote, ...notes]);
   };
+
   const deleteNote = (id) => {
     setNotes(notes.filter((note) => note.id != id));
   };
+
+  const updateNote = (id, title, content) => {
+    setNotes(
+      notes.map((note) =>
+        note.id === id ? { ...note, title, content } : note,
+      ),
+    );
+  };
+
   return (
-    <NotesContext.Provider value={{ notes, addNote, deleteNote }}>
+    <NotesContext.Provider value={{ notes, addNote, deleteNote, updateNote }}>
       {children}
     </NotesContext.Provider>
   );
